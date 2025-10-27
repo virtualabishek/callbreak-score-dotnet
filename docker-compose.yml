@@ -4,7 +4,7 @@ services:
     ports:
       - "8080:80"
     environment:
-      - ConnectionStrings__DefaultConnection=Host=postgres;Database=callbreakapp;Username=postgres;Password=postgrespass;Port=5432
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=callbrak;Username=postgres;Password=postgrespass;Port=5432
       - ASPNETCORE_URLS=http://+:80
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
@@ -14,10 +14,10 @@ services:
       - app-network
 
   postgres:
-    image: postgres:16 
+    image: postgres:17
     environment:
       POSTGRES_PASSWORD: postgrespass
-      POSTGRES_DB: b6gJ3xG7jF81mv3JJ5sWN89if7whQgYr
+      POSTGRES_DB: callbrak  
     ports:
       - "5432:5432"
     volumes:

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQLusing Microsoft.AspNetCore.Identity;
+using Npgsql.EntityFrameworkCore.PostgreSQLusing;
+Microsoft.AspNetCore.Identity;
 using CallbreakApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
-    
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -22,22 +23,22 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var retryCount = 0;
-    const int maxRetries = 10;  // Increased for MySQL init
+    const int maxRetries = 10;
     ApplicationDbContext? context = null;
     while (retryCount < maxRetries)
     {
         try
         {
             context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            context.Database.EnsureCreated();  // Ensures DB exists
-            context.Database.Migrate();  // Applies migrations
+            context.Database.EnsureCreated();
+            context.Database.Migrate();
             break;
         }
         catch (Exception ex) when (retryCount < maxRetries - 1)
         {
             retryCount++;
-            Console.WriteLine($"Migration retry {retryCount}: {ex.Message}");  // Log
-            Thread.Sleep(3000 * retryCount);  // Backoff
+            Console.WriteLine($"Migration retry {retryCount}: {ex.Message}");
+            Thread.Sleep(3000 * retryCount);
         }
     }
     if (context == null) throw new InvalidOperationException("Failed to connect to DB after retries.");
