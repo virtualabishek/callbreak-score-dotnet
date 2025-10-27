@@ -4,35 +4,35 @@ services:
     ports:
       - "8080:80"
     environment:
-      - ConnectionStrings__DefaultConnection=Server=mysql;Database=CallbreakApp;User=root;Password=Imp2083!;Port=3306
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=callbreakapp;Username=postgres;Password=postgrespass;Port=5432
       - ASPNETCORE_URLS=http://+:80
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
-      mysql:
-        condition: service_healthy    
+      postgres:
+        condition: service_healthy
     networks:
       - app-network
 
-  mysql:
-    image: mysql:8.0
+  postgres:
+    image: postgres:16 
     environment:
-      MYSQL_ROOT_PASSWORD: Imp2083!
-      MYSQL_DATABASE: CallbreakApp
+      POSTGRES_PASSWORD: postgrespass
+      POSTGRES_DB: b6gJ3xG7jF81mv3JJ5sWN89if7whQgYr
     ports:
-      - "3308:3306"
+      - "5432:5432"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
     networks:
       - app-network
-    healthcheck:  
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pImp2083!"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 30s
 
 volumes:
-  mysql-data:
+  postgres-data:
 
 networks:
   app-network:

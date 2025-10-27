@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using Microsoft.AspNetCore.Identity;
+using Npgsql.EntityFrameworkCore.PostgreSQLusing Microsoft.AspNetCore.Identity;
 using CallbreakApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Services
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 43))));  // Fixed: No AutoDetect
-
+    options.UseNpgsql(connectionString));
+    
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
