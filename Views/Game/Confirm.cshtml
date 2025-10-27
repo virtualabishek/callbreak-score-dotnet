@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = $"Confirm Round {ViewBag.Round}";
+    var session = ViewBag.Session as GameSession;
+}
+<div class="container-fluid">
+    <h2>Confirm Round @ViewBag.Round Scores</h2>
+    <table class="table table-responsive">
+        <thead><tr><th>Player</th><th>Score This Round</th><th>Total</th></tr></thead>
+        <tbody>
+            @foreach (var player in session.Players)
+            {
+                var roundScore = player[ViewBag.Round];
+                <tr><td>@player.Name</td><td>@roundScore.ToString("F1")</td><td>@player.TotalScore.ToString("F1")</td></tr>
+            }
+        </tbody>
+    </table>
+    <form asp-action="Confirm" method="post">
+        <input type="hidden" name="round" value="@ViewBag.Round" />
+        <input type="hidden" name="confirm" value="true" />
+        <button type="submit" class="btn btn-success">Confirm & Lock</button>
+        <a asp-action="Tricks" asp-route-round="@ViewBag.Round" class="btn btn-warning">Edit</a>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+@model List<string>
+@{
+    ViewData["Title"] = "Start Game";
+}
+<div class="container-fluid"> 
+    <h2>Enter 4 Player Names</h2>
+    @if (TempData["Error"] != null) { <div class="alert alert-danger">@TempData["Error"]</div> }
+    <form asp-action="Create" method="post">
+        @for (int i = 0; i < 4; i++)
+        {
+            <div class="form-group mb-3">
+                <label>Player @(i+1)</label>
+                <input name="playerNames[@i]" class="form-control" placeholder="Player @(i+1)" required />
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">Start Game</button>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

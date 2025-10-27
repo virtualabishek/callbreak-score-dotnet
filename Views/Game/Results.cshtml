@@ -1,0 +1,41 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Game Over!";
+    var session = ViewBag.Session as GameSession;
+    var winnerName = ViewBag.Winner as string;
+}
+<div class="container-fluid">
+    <h1>Congratulations! Winner: @winnerName 🎉</h1>
+    <table class="table table-responsive">
+        <thead><tr><th>Player</th><th>Total Score</th></tr></thead>
+        <tbody>
+            @foreach (var player in session!.Players.OrderByDescending(p => p.TotalScore))
+            {
+                <tr><td>@player.Name</td><td>@player.TotalScore.ToString("F1")</td></tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>Bid Check After Game</h2>
+    <table class="table table-responsive table-striped">
+        <thead><tr><th>Round</th><th>Player</th><th>Bid</th><th>Tricks</th><th>Bid Met?</th><th>Score</th></tr></thead>
+        <tbody>
+            @for (int r = 1; r <= 5; r++)
+            {
+                var round = session.Rounds.FirstOrDefault(rr => rr.RoundNumber == r);
+                if (round != null)
+                {
+                    @foreach (var player in session.Players)
+                    {
+                        var bid = round.Bids.GetValueOrDefault(player.Id, 0);
+                        var tricks = round.Tricks.GetValueOrDefault(player.Id, 0);
+                        var bidMet = tricks >= bid ? "Yes" : "No";
+                        var roundScore = player[r];
+                        <tr><td>@r</td><td>@player.Name</td><td>@bid</td><td>@tricks</td><td>@bidMet @(bidMet == "Yes" ? $"+{0.1 * (tricks - bid):F1}" : "⚪")</td><td>@roundScore.ToString("F1")</td></tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+    <a asp-action="Create" class="btn btn-primary">New Game</a>
+</div>

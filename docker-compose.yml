@@ -1,0 +1,38 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=mysql;Database=CallbreakApp;User=root;Password=Imp2083!;Port=3306
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      mysql:
+        condition: service_healthy    
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: Imp2083!
+      MYSQL_DATABASE: CallbreakApp
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+    healthcheck:  
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pImp2083!"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:

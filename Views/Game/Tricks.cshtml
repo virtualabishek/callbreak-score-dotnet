@@ -1,0 +1,54 @@
+@model Dictionary<int, int>
+@{
+    ViewData["Title"] = $"Tricks - Round {ViewBag.Round}";
+    var bids = ViewBag.Bids as Dictionary<int, int> ?? new Dictionary<int, int>();
+    var session = ViewBag.Session as GameSession;
+    var prefill = Model ?? new Dictionary<int, int>();
+}
+<div class="container-fluid">
+    <h2>Tricks Won for Round @ViewBag.Round</h2>
+    @if (TempData["Error"] != null) { <div class="alert alert-danger">@TempData["Error"]</div> }
+    @if (TempData["Warning"] != null) { <div class="alert alert-warning">@TempData["Warning"]</div> }
+    <form asp-action="Tricks" method="post">
+    <input type="hidden" name="round" value="@ViewBag.Round" />
+    <table class="table table-responsive table-striped"> 
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th class="text-end">Current Score</th>
+                <th>Bid</th>
+                <th class="text-end">Projected Total</th>
+                <th>Tricks (0-13)</th>
+            </tr>
+        </thead>
+        <tbody>
+           @foreach (var player in session?.Players.Select((p, index) => new { Player = p, Index = index }) ?? Enumerable.Empty<dynamic>())
+    {
+        <tr>
+            <td>@player.Player.Name</td>
+            <td class="text-end">@player.Player.TotalScore.ToString("0.0")</td>
+            <td>@(bids.ContainsKey(player.Player.Id) ? bids[player.Player.Id].ToString() : "-")</td>
+            @{ 
+                var ptDict = ViewBag.ProjectedTotals as Dictionary<int,double> ?? new Dictionary<int,double>();
+            }
+            <td class="text-end">@(ptDict.TryGetValue(player.Player.Id, out double pt) ? (pt >= 0 ? "+" + pt.ToString("0.0") : pt.ToString("0.0")) : "-")</td>
+            <td>
+                @{ var defaultTrick = prefill.ContainsKey(player.Player.Id) ? prefill[player.Player.Id] : (bids.ContainsKey(player.Player.Id) ? bids[player.Player.Id] : 0); }
+                <input type="number" name="tricks[@player.Player.Id]" min="0" max="13" class="form-control d-inline w-auto" value="@defaultTrick" required />
+            </td>
+        </tr>
+    }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Totals</th>
+                <th class="text-end">@((session?.Players.Sum(p => p.TotalScore)) ?? 0)</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+    <button type="submit" class="btn btn-primary">Save Tricks</button>
+    </form>
+</div>
