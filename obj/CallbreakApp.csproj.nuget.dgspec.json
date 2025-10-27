@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/CallbreakApp.csproj": {}
+    "/home/abi/Desktop/Callbreak/CallbreakApp.csproj": {}
   },
   "projects": {
-    "/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/CallbreakApp.csproj": {
+    "/home/abi/Desktop/Callbreak/CallbreakApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/CallbreakApp.csproj",
+        "projectUniqueName": "/home/abi/Desktop/Callbreak/CallbreakApp.csproj",
         "projectName": "CallbreakApp",
-        "projectPath": "/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/CallbreakApp.csproj",
+        "projectPath": "/home/abi/Desktop/Callbreak/CallbreakApp.csproj",
         "packagesPath": "/home/abi/.nuget/packages/",
-        "outputPath": "/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/obj/",
+        "outputPath": "/home/abi/Desktop/Callbreak/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/abi/.nuget/NuGet/NuGet.Config"
@@ -69,6 +69,10 @@
             "MySql.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.6, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
