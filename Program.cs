@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.AspNetCore.Identity;
 using CallbreakApp.Data;
-using Microsoft.Extensions.Configuration;  // Added for IConfiguration
+using Microsoft.Extensions.Configuration;  
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,34 +21,44 @@ builder.Services.AddSession();
 var app = builder.Build();
 
 // Auto-migrations with connect retry (inject config in scope)
+// Auto-migrations with smart connect retry
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    var config = services.GetRequiredService<IConfiguration>();  // Fetch fresh config
-    var connStr = config.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string is null in scope");
-    Console.WriteLine($"Scope Connection String: [{connStr}]");  // Log in scope
+    var config = services.GetRequiredService<IConfiguration>();
+    var connStr = config.GetConnectionString("DefaultConnection")
+                  ?? throw new InvalidOperationException("Connection string is null in scope");
+    Console.WriteLine($"Scope Connection String: [{connStr}]");
 
     var retryCount = 0;
-    const int maxRetries = 10;
-    ApplicationDbContext? context = null;
+    const int maxRetries = 5;
+
     while (retryCount < maxRetries)
     {
         try
         {
-            context = services.GetRequiredService<ApplicationDbContext>();
-            context.Database.EnsureCreated();
+            var context = services.GetRequiredService<ApplicationDbContext>();
+            // ONLY run migrations; don't use EnsureCreated()
             context.Database.Migrate();
-            break;
+            Console.WriteLine("Database migration succeeded.");
+            break; // success, exit loop
         }
-        catch (Exception ex) when (retryCount < maxRetries - 1)
+        catch (Npgsql.PostgresException ex) when (ex.SqlState == "08001" || ex.SqlState == "57P01")
         {
+            // Connection-related errors, safe to retry
             retryCount++;
-            Console.WriteLine($"Migration retry {retryCount}: {ex.Message}");
+            Console.WriteLine($"Database connection failed, retry {retryCount}/{maxRetries}: {ex.Message}");
             Thread.Sleep(3000 * retryCount);
         }
+        catch (Exception ex)
+        {
+            // Schema conflicts or other issues, don't retry endlessly
+            Console.WriteLine($"Database migration failed: {ex.Message}");
+            throw; // crash, so you can fix schema issues
+        }
     }
-    if (context == null) throw new InvalidOperationException("Failed to connect to DB after retries.");
 }
+
 
 // Pipeline
 if (!app.Environment.IsDevelopment())
