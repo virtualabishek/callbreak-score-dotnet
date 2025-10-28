@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CallbreakApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45bc2891281cead3e88905aaf41f611f46cf015f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+44b080ebde2b80a93e980d06e024d2f340eba0f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("CallbreakApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CallbreakApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

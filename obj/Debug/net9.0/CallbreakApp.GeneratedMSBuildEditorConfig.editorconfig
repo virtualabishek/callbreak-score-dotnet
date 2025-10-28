@@ -17,77 +17,77 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CallbreakApp
 build_property.RootNamespace = CallbreakApp
-build_property.ProjectDir = /home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/
+build_property.ProjectDir = /home/abi/Desktop/Callbreak/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp
+build_property.MSBuildProjectDirectory = /home/abi/Desktop/Callbreak
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Pages/Account/Login.cshtml]
+[/home/abi/Desktop/Callbreak/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Pages/Account/Logout.cshtml]
+[/home/abi/Desktop/Callbreak/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWNjb3VudC9Mb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Pages/Account/Register.cshtml]
+[/home/abi/Desktop/Callbreak/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Game/Bids.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Game/Bids.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2FtZS9CaWRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Game/Confirm.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Game/Confirm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2FtZS9Db25maXJtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Game/Create.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Game/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2FtZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Game/Results.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Game/Results.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2FtZS9SZXN1bHRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Game/Tricks.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Game/Tricks.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2FtZS9Ucmlja3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Home/Index.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Home/Privacy.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Shared/Error.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Shared/_LoginPartial.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/_ViewImports.cshtml]
+[/home/abi/Desktop/Callbreak/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/_ViewStart.cshtml]
+[/home/abi/Desktop/Callbreak/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/abi/Desktop/learning/learning-utsav-2025/projects/CallbreakApp/Views/Shared/_Layout.cshtml]
+[/home/abi/Desktop/Callbreak/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ktiyqzx6ww
