@@ -2,16 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.AspNetCore.Identity;
 using CallbreakApp.Data;
+using Microsoft.Extensions.Configuration;  // Added for IConfiguration
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Services
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-Console.WriteLine($"Connection String: '{connectionString}'");  // Log exact value
-
-
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(connectionString ?? throw new InvalidOperationException("Connection string is null")));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -22,9 +20,14 @@ builder.Services.AddSession();
 
 var app = builder.Build();
 
-// Auto-migrations with connect retry (wraps DbContext init)
+// Auto-migrations with connect retry (inject config in scope)
 using (var scope = app.Services.CreateScope())
 {
+    var services = scope.ServiceProvider;
+    var config = services.GetRequiredService<IConfiguration>();  // Fetch fresh config
+    var connStr = config.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string is null in scope");
+    Console.WriteLine($"Scope Connection String: [{connStr}]");  // Log in scope
+
     var retryCount = 0;
     const int maxRetries = 10;
     ApplicationDbContext? context = null;
@@ -32,7 +35,7 @@ using (var scope = app.Services.CreateScope())
     {
         try
         {
-            context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            context = services.GetRequiredService<ApplicationDbContext>();
             context.Database.EnsureCreated();
             context.Database.Migrate();
             break;
