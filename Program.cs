@@ -7,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Services
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine($"Connection String: '{connectionString}'");  // Log exact value
+
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 
