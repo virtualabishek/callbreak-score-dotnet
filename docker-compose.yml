@@ -6,7 +6,7 @@ services:
     environment:
       - ConnectionStrings__DefaultConnection=Host=postgres;Database=callbrak;Username=postgres;Password=postgrespass;Port=5432
       - ASPNETCORE_URLS=http://+:80
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       postgres:
         condition: service_healthy
